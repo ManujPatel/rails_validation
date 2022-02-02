@@ -1,2 +1,13 @@
-<h1>Students#show</h1>
-<p>Find me in app/views/students/show.html.erb</p>
+<h1><%= @student.first_name%>'s Details:</h1>
+<h2>Genral Details:</h2>
+<table border="20px" width="100%">
+<thead><th>Student Name</th><th>Date Of Birth</th><th>department</th></thead>
+<tr>
+<td ><%= @student.first_name%> <%= @student.last_name%> </td>
+<td><%= @student.date_of_birth%></td>
+<td><%= @student.department%></td>
+</tr>
+</table>
+<br><br>
+<%= button_to "Destroy Student", student_path, method: :delete %>
+

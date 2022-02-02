@@ -1,4 +1,6 @@
 class Faculty < ApplicationRecord
+    # frozen_string_literal: true
+    
     validates :first_name, :last_name, :email, presence: true
     validates :phone, :email, uniqueness: true
     validates :phone, numericality: true

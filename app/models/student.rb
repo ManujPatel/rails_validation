@@ -9,7 +9,5 @@ class Student < ApplicationRecord
         end
     end
 
-    validates :terms_of_usage, acceptance: { message: 'must be accepted' } 
-
-
+    validates :terms_of_usage, acceptance: { message: 'You cannot proceed without accepting Terms of Usage' } 
 end

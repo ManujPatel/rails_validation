@@ -1,2 +1,25 @@
-<h1>Faculties#new</h1>
-<p>Find me in app/views/faculties/new.html.erb</p>
+<h1>Faculties new form</h1>
+
+<% if flash[:errors]%>
+    <% flash[:errors].each do |error|%>
+        <p style="color: red"><%= error%></p>
+    <%end%>
+<%end%>
+
+<%= form_for @faculty do |f|%>
+    <%= f.label :first_name %>
+    <%= f.text_field :first_name%>
+    <%= f.label :last_name %>
+    <%= f.text_field :last_name%>
+    <%= f.label :date_of_birth %>
+    <%= f.date_field :date_of_birth%>
+    <%= f.label :phone %>
+    <%= f.number_field :phone%>
+    <%= f.label :email %>
+    <%= f.text_field :email%>
+    <%= f.label :designation %>
+    <%= f.text_field :designation%>
+
+    <%= f.submit%>
+<%end%>
+
