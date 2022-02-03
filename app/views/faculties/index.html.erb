@@ -1,0 +1,24 @@
+<h1>Home</h1>
+
+
+<table width= "100%" border= "10px">
+<thead><th>Students<th>Faculties</th><thead>
+<tr>
+    <td width="50%" align = center> 
+    <% @students.each do |student|%>
+        <%= link_to student.first_name, student_path(student)%><br>
+    <%end%>
+    </td> 
+    <td align = center>
+    <% @faculties.each do |faculty|%>
+        <%= link_to faculty.first_name, faculty_path(faculty)%><br>
+    <%end%>
+    </td>
+</tr>
+<tr>
+<td><%= button_to "Add New student", new_student_path, method: :get %></td>
+<td><%= button_to "Add New Faculty", new_faculty_path, method: :get %></td>
+</tr>
+</table>
+
+<p>Find me in app/views/faculties/index.html.erb</p>
