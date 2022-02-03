@@ -11,7 +11,7 @@ class StudentsController < ApplicationController
   def create
     @student = Student.create(params.require(:student).permit(:first_name, :last_name, :date_of_birth, :department, :terms_of_usage))
     if @student.valid?
-      redirect_to students_path
+      redirect_to faculties_path
     else
       flash[:errors] = @student.errors.full_messages
       redirect_to new_student_path
@@ -25,7 +25,9 @@ class StudentsController < ApplicationController
   end
 
   def update
-    @student = Student.create(params.require(:student).permit(:first_name, :last_name, :date_of_birth, :department, :terms_of_usage))
+    # byebug
+    @student = Student.update(params.require(:student).permit(:first_name, :last_name, :date_of_birth, :department, :terms_of_usage))
+    redirect_to student_path
   end
 
   def destroy

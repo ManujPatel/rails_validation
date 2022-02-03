@@ -27,7 +27,9 @@ class FacultiesController < ApplicationController
   end
 
   def update
-    @faculty = Faculty.create(params.require(:faculty).permit(:first_name, :last_name, :date_of_birth, :phone, :email, :designation))
+    # byebug
+    @faculty = Faculty.update(params.require(:faculty).permit(:first_name, :last_name, :date_of_birth, :phone, :email, :designation))
+    redirect_to faculty_path
   end
 
   def destroy
