@@ -11,6 +11,7 @@ class StudentsController < ApplicationController
   def create
     @student = Student.create(params.require(:student).permit(:first_name, :last_name, :date_of_birth, :department, :terms_of_usage))
     if @student.valid?
+      flash[:notice] = "student is successfully added."
       redirect_to faculties_path
     else
       flash[:errors] = @student.errors.full_messages
@@ -26,9 +27,12 @@ class StudentsController < ApplicationController
 
   def update
     
-    @student = @student.update(params.require(:student).permit(:first_name, :last_name, :date_of_birth, :department, :terms_of_usage))
-    redirect_to faculties_path
-   
+    if(@student.update(params.require(:student).permit(:first_name, :last_name, :date_of_birth, :department, :terms_of_usage)))
+      redirect_to faculties_path
+    else
+      flash[:errors] = @student.errors.full_messages
+      redirect_to edit_student_path
+    end
   end
 
   def destroy

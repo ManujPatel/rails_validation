@@ -13,6 +13,7 @@ class FacultiesController < ApplicationController
   def create
     @faculty = Faculty.create(params.require(:faculty).permit(:first_name, :last_name, :date_of_birth, :phone, :email, :designation))
     if @faculty.valid?
+      flash[:notice] = "Faculty is successfully added."
       redirect_to faculties_path
     else
       flash[:errors] = @faculty.errors.full_messages
@@ -28,8 +29,12 @@ class FacultiesController < ApplicationController
 
   def update
     # byebug
-    @faculty = Faculty.update(params.require(:faculty).permit(:first_name, :last_name, :date_of_birth, :phone, :email, :designation))
-    redirect_to faculty_path
+    if (@faculty.update(params.require(:faculty).permit(:first_name, :last_name, :date_of_birth, :phone, :email, :designation)))
+      redirect_to faculties_path  
+    else
+      flash[:errors] = @faculty.errors.full_messages
+      redirect_to edit_faculty_path
+    end
   end
 
   def destroy
@@ -37,7 +42,8 @@ class FacultiesController < ApplicationController
     @faculty.destroy
     redirect_to faculties_path
   end
-end
-def find
-  @faculty = Faculty.find(params[:id])
+
+  def find
+    @faculty = Faculty.find(params[:id])
+  end
 end

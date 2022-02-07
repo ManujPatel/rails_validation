@@ -1,8 +1,9 @@
-<<<<<<< Updated upstream
-<h1>Students#show</h1>
-<p>Find me in app/views/students/show.html.erb</p>
-=======
 <h1><%= @student.first_name%>'s Details:</h1>
+<% if flash[:notice] %> 
+      <% flash.each do |name,msg| %>
+        <p style="color:green;"><%= msg %></p>
+      <% end %>
+<% end %>
 <h2>Genral Details:</h2>
 <table border="20px" width="100%">
 <thead><th>Student Name</th><th>Date Of Birth</th><th>department</th></thead>
@@ -15,4 +16,4 @@
 <br><br>
 <%= button_to "Destroy Student", student_path, method: :delete %><br>
 <%= button_to "Edit Student", edit_student_path, method: :get %>
->>>>>>> Stashed changes
+
